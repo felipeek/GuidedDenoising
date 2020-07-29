@@ -1,0 +1,25 @@
+Bilateral Normal Filtering for Mesh Denoising
+
+σ_s typically lies in the range of [0.2-0.6], with higher values for higher level of noise.
+
+Scheme I -> local, iterative scheme
+Scheme II -> global, non-iterative scheme
+
+Scheme I  (normal updating iterations, σ_s, vertex updating iterations, neighborhood size)
+Scheme II (λ, σ_s, vertex updating iterations, neighborhood size)
+
+The first type, denoted by NI(i), is a set of faces that share edges with fi
+The second type, denoted by NII(i), is a set of faces that share common vertices with fi.
+
+We found that the first type of face neighborhood NI works well for non-CAD models and NII is more suitable for CAD-like models.
+
+-> Conclusion: Usar Face Neighbor: edges quando filtrando non-CAD, usar Face Neighbor: vertices quando filtrando CAD.
+
+(Eles usam NII em todos testes deles no artigo)
+
+λ -> smoothness
+
+Among the parameters, the number of normal updating iterations for our local, iterative scheme, λ for our global, non-iterative scheme, and σ_s for both schemes influence the degree of denoising the most significantly. Figure 6 shows that larger values of σ_s or λ lead to smoother results.
+
+Scheme 1 -> variar σ_s e normal updating iterations para aumentar/diminuir denoising
+Scheme 2 -> variar σ_s e λ para aumentar/diminuir denoising
