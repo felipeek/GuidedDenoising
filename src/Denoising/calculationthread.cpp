@@ -1,4 +1,7 @@
 #include "calculationthread.h"
+#include <iostream>
+#include <cstdio>
+#include <ctime>
 
 CalculationThread::CalculationThread()
 {
@@ -53,8 +56,14 @@ void CalculationThread::run()
     emit(setActionAndWidget(false, false));
     if(algorithms_type_ == kNoise)
         noise_->addNoise();
-    else
+    else {
+        std::clock_t start;
+        double duration;
+        start = std::clock();
         mesh_denoise_base_->denoise();
+        duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+        std::cout << "Filtering took " << duration << "sec. (" << algorithm_name_.toStdString().c_str() << ")." << std::endl;
+    }
     emit(setActionAndWidget(true, false));
     emit(statusShowMessage("Applying algorithm --" + algorithm_name_ + "-- done."));
 
