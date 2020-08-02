@@ -127,3 +127,5 @@ SOURCES += Core/Geometry/NormalConeT.cc \
            Core/IO/writer/STLWriter.cc \
            Core/IO/writer/VTKWriter.cc
 
+QMAKE_CXXFLAGS += -O3 -ffast-math
+QMAKE_CXXFLAGS_RELEASE += -O3 -ffast-math
